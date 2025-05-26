@@ -5,71 +5,40 @@
     <title>Carol Kerschbaumer - Calculator Soul</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Roboto:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Roboto:wght@400;500;700&display=swap');
 
         body {
             font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #1E1B4B, #0D0B3E);
-            color: #E0E0FF;
         }
 
         h1, h2, h3 {
             font-family: 'Cormorant Garamond', serif;
-            color: #E0E0FF;
         }
 
-        header, footer {
-            background-color: #4B0082;
-            color: #E0E0FF;
+        /* Efeitos suaves para transições */
+        * {
+            transition: all 0.3s ease;
         }
 
-        section {
-            background-color: #3A3A6A;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        /* Estilo para o backdrop blur */
+        .backdrop-blur-sm {
+            backdrop-filter: blur(8px);
         }
 
-        img {
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        label {
-            color: #B0B0FF;
-        }
-
-        input {
-            border: 1px solid #4B0082;
-            border-radius: 4px;
-            padding: 8px;
-            color: #1E1B4B;
+        /* Hover effects personalizados */
+        button:hover {
+            transform: translateY(-2px);
         }
 
         input:focus {
-            border-color: #6A0DAD;
-            box-shadow: 0 0 0 3px rgba(106, 13, 173, 0.2);
-        }
-
-        button {
-            background-color: #6A0DAD;
-            color: #E0E0FF;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #4B0082;
-            transform: scale(1.05);
-        }
-
-        footer p {
-            color: #E0E0FF;
+            transform: scale(1.02);
         }
     </style>
 </head>
 
-<body class="bg-[#BF926B] text-[#1E90FF] font-sans flex flex-col min-h-screen">
+<body class="bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 text-white font-sans flex flex-col min-h-screen">
 
-    <header class="bg-[#6A0DAD] text-white border-b border-[#1E90FF]">
+    <header class="bg-purple-800 text-white border-b border-purple-600 shadow-lg">
         <div class="container mx-auto flex items-center justify-between p-4">
             <h1 class="text-2xl font-bold">Carol Kerschbaumer</h1>
         </div>
@@ -77,29 +46,29 @@
 
     <main class="flex-grow flex justify-center items-center p-4">
         <section
-            class="bg-[#D97B73] p-6 rounded-lg shadow-lg border border-[#6A0DAD] w-full max-w-4xl flex flex-col md:flex-row">
+            class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl shadow-2xl border border-white/20 w-full max-w-4xl flex flex-col md:flex-row">
             <div class="w-full md:w-1/2 flex justify-center items-center p-4">
-                <img src="../image.png" alt="Imagem" class="rounded-lg shadow-md border border-[#6A0DAD]">
+                <img src="../image.png" alt="Imagem" class="rounded-xl shadow-xl border-4 border-white/30 hover:border-purple-300 transition-all duration-300">
             </div>
 
             <div class="w-full md:w-1/2 p-6 md:p-10 mt-20">
-                <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 text-[#1E90FF]">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 text-white">
                     Digite o nome completo do seu negócio!
                 </h2>
                 <form id="soulForm" class="space-y-6">
                     <div class="space-y-2">
-                        <label for="fullName" class="block text-sm font-medium text-[#6A0DAD]">Nome Completo do seu Negócio:</label>
+                        <label for="fullName" class="block text-sm font-medium text-blue-200">Nome Completo do seu Negócio:</label>
                         <div class="relative">
                             <input type="text" id="businessName" placeholder="Digite o nome do negócio" required
-                                class="mt-1 pl-4 pr-4 py-2 w-full bg-white text-[#1E90FF] border border-[#6A0DAD] rounded-md focus:outline-none 
-                                focus:ring-2 focus:ring-[#D97B73] transition-transform transform focus:scale-[1.02]">
+                                class="mt-1 pl-4 pr-4 py-3 w-full bg-white text-purple-900 border-2 border-purple-300 rounded-lg focus:outline-none 
+                                focus:ring-4 focus:ring-purple-500/30 focus:border-purple-500 transition-all duration-300 shadow-lg">
                         </div>
                     </div>
                     <div>
                         <button
                             type="button"
                             id="generateBusinessPlanButton"
-                            class="w-full bg-[#6A0DAD] hover:bg-[#1E90FF] text-white px-4 py-2 rounded-md shadow-md transform transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#D97B73]">
+                            class="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-6 py-3 rounded-lg shadow-xl transform transition-all duration-300 hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-purple-500/50 font-semibold">
                             Geração dos cálculos
                         </button>
                     </div>
@@ -108,9 +77,9 @@
         </section>
     </main>
 
-    <footer class="bg-[#6A0DAD] text-white border-t border-[#1E90FF] p-4">
+    <footer class="bg-purple-800 text-white border-t border-purple-600 p-4 shadow-lg">
         <div class="container mx-auto text-center">
-            <p class="text-sm">© 2023 Carol Kerschbaumer. Todos os direitos reservados.</p>
+            <p class="text-sm">© 2025 Carol Kerschbaumer. Todos os direitos reservados.</p>
         </div>
     </footer>
 
