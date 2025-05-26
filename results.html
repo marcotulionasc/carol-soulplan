@@ -6,17 +6,51 @@
     <title>Resultados - Calculator Soul</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Roboto:wght@400;500;700&display=swap');
+        
         body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        h1, h2, h3 {
             font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Efeitos suaves para transições */
+        * {
+            transition: all 0.3s ease;
+        }
+
+        /* Estilo para o backdrop blur */
+        .backdrop-blur-sm {
+            backdrop-filter: blur(8px);
+        }
+
+        /* Tabelas com estilo moderno */
+        table {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        thead {
+            background: linear-gradient(135deg, #6A0DAD, #4B0082) !important;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        tbody tr:hover {
+            background-color: rgba(106, 13, 173, 0.1);
         }
     </style>
 </head>
 
-<body class="bg-[#BF926B] text-[#59162F] font-sans flex flex-col min-h-screen">
+<body class="bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 text-white font-sans flex flex-col min-h-screen">
 
     <!-- Cabeçalho -->
-    <header class="bg-[#8C3E4C] text-white border-b border-[#59162F]">
+    <header class="bg-purple-800 text-white border-b border-purple-600 shadow-lg">
         <div class="container mx-auto flex items-center justify-between p-4">
             <h1 class="text-2xl font-bold">Resultados</h1>
         </div>
@@ -24,19 +58,19 @@
 
     <!-- Conteúdo principal -->
     <main class="flex-grow flex justify-center items-start p-4">
-        <div class="w-full max-w-4xl bg-[#D97B73] p-6 rounded-lg shadow-lg border border-[#8C451C]">
+        <div class="w-full max-w-4xl bg-white/10 backdrop-blur-sm p-8 rounded-2xl shadow-2xl border border-white/20">
             <!-- Aqui vão os resultados (renderizados via JavaScript) -->
             <div 
               id="resultsWrapper" 
-              class="w-full mt-6 bg-white p-4 rounded-lg shadow-lg"
+              class="w-full mt-6 bg-white/5 backdrop-blur-sm p-6 rounded-xl shadow-xl border border-white/10"
             ></div>
         </div>
     </main>
 
     <!-- Rodapé -->
-    <footer class="bg-[#8C3E4C] text-white border-t border-[#59162F] p-4">
+    <footer class="bg-purple-800 text-white border-t border-purple-600 p-4 shadow-lg">
         <div class="container mx-auto text-center">
-            <p class="text-sm">© 2023 Carol Kerschbaumer. Todos os direitos reservados.</p>
+            <p class="text-sm">© 2025 Carol Kerschbaumer. Todos os direitos reservados.</p>
         </div>
     </footer>
 
@@ -57,7 +91,7 @@
         const storedResults = localStorage.getItem('soulResults');
         if (!storedResults) {
             document.getElementById('resultsWrapper').innerHTML = `
-                <p class='text-center text-[#59162F]'>
+                <p class='text-center text-blue-200'>
                     Nenhum resultado disponível.
                 </p>
             `;
@@ -67,25 +101,25 @@
 
             // Tabela de letras
             const letterTableContainer = document.createElement("div");
-            letterTableContainer.className = "overflow-x-auto rounded-lg shadow-md border border-[#8C451C] mb-6";
+            letterTableContainer.className = "overflow-x-auto rounded-xl shadow-xl border border-white/20 mb-6";
             
             const letterTable = document.createElement("table");
-            letterTable.className = "w-full text-sm text-left text-[#59162F]";
+            letterTable.className = "w-full text-sm text-left text-white";
             letterTable.innerHTML = `
-                <thead class="text-xs uppercase bg-[#8C3E4C] text-white font-semibold">
+                <thead class="text-xs uppercase bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold">
                     <tr>
                         <th scope="col" class="px-6 py-3">Posição</th>
                         ${nameArray.map((item, index) => `<th scope="col" class="px-6 py-3">${index + 1}</th>`).join('')}
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="bg-white border-b border-[#8C451C]">
+                    <tr class="bg-white/10 border-b border-white/20">
                         <td class="px-6 py-4 font-semibold">Letra</td>
                         ${nameArray.map(item => `<td class="px-6 py-4">${item.char}</td>`).join('')}
                     </tr>
-                    <tr class="bg-white">
-                        <td class="px-6 py-4 font-semibold border-t border-[#8C451C]">Valor</td>
-                        ${nameArray.map(item => `<td class="px-6 py-4 border-t border-[#8C451C]">${item.value}</td>`).join('')}
+                    <tr class="bg-white/5">
+                        <td class="px-6 py-4 font-semibold border-t border-white/20">Valor</td>
+                        ${nameArray.map(item => `<td class="px-6 py-4 border-t border-white/20">${item.value}</td>`).join('')}
                     </tr>
                 </tbody>
             `;
@@ -99,12 +133,12 @@
 
             groups.forEach(group => {
                 const groupTableContainer = document.createElement("div");
-                groupTableContainer.className = "rounded-lg shadow-md border border-[#8C451C] overflow-hidden";
+                groupTableContainer.className = "rounded-xl shadow-xl border border-white/20 overflow-hidden";
 
                 const groupTable = document.createElement("table");
-                groupTable.className = "w-full text-sm text-left text-[#59162F]";
+                groupTable.className = "w-full text-sm text-left text-white";
                 groupTable.innerHTML = `
-                    <thead class="text-xs uppercase bg-[#8C3E4C] text-white font-semibold">
+                    <thead class="text-xs uppercase bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold">
                         <tr>
                             <th scope="col" colspan="2" class="px-6 py-3 text-center">${group.name}</th>
                         </tr>
@@ -114,7 +148,7 @@
 
                 group.letters.forEach(item => {
                     groupTable.innerHTML += `
-                        <tr class="bg-white border-b border-[#8C451C]">
+                        <tr class="bg-white/10 border-b border-white/20">
                             <td class="px-6 py-4">${item.char}</td>
                             <td class="px-6 py-4">${item.value}</td>
                         </tr>
@@ -135,7 +169,7 @@
 
                 // Última linha do grupo (total)
                 groupTable.innerHTML += `
-                    <tr class="bg-[#D97B73]">
+                    <tr class="bg-gradient-to-r from-purple-600/30 to-blue-600/30">
                         <td class="px-6 py-4 font-semibold">Total</td>
                         <td class="px-6 py-4 font-semibold">${displayTotal}</td>
                     </tr>
@@ -150,20 +184,20 @@
 
             // Resumo: Destino da Alma e Vibração Dominante
             const summaryContainer = document.createElement("div");
-            summaryContainer.className = "mt-6 p-4 bg-white rounded-lg shadow-md border border-[#8C451C]";
+            summaryContainer.className = "mt-6 p-6 bg-white/10 backdrop-blur-sm rounded-xl shadow-xl border border-white/20";
 
             const destinoDaAlmaElement = document.createElement("div");
             destinoDaAlmaElement.className = "mb-4 text-center";
             destinoDaAlmaElement.innerHTML = `
-                <h3 class="text-xl font-semibold text-[#8C3E4C]">Destino da Alma</h3>
-                <p class="text-lg text-[#59162F]">${destinoDaAlma}</p>
+                <h3 class="text-xl font-semibold text-purple-200">Destino da Alma</h3>
+                <p class="text-lg text-white">${destinoDaAlma}</p>
             `;
 
             const vibracaoDominanteElement = document.createElement("div");
             vibracaoDominanteElement.className = "text-center";
             vibracaoDominanteElement.innerHTML = `
-                <h3 class="text-xl font-semibold text-[#8C3E4C]">Vibração Dominante</h3>
-                <p class="text-lg text-[#59162F]">
+                <h3 class="text-xl font-semibold text-purple-200">Vibração Dominante</h3>
+                <p class="text-lg text-white">
                     ${vibracaoDominante || 'Nenhuma vibração dominante identificada'}
                 </p>
             `;
